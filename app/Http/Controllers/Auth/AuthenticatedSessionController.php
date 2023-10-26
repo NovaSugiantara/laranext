@@ -21,7 +21,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return response()->noContent();
+        $user = auth()->user();
+
+        // return response()->noContent();
+        return response()->json([
+            'success'   => true,
+            'code'      => 200,
+            'data'      => [
+                'token'   => $user->createToken($user->name)->plainTextToken,
+                'name'    => $user->name,
+            ],
+            'message' => 'User Logged in!'
+        ]);
     }
 
     /**

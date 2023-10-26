@@ -21,12 +21,12 @@ class UserSeeder extends Seeder
         $fullName = $firstName . " " . $lastName;
 
         $user = User::create([
-            'name' => $fullName,
-            'email' => $faker->email,
+            'name' => 'John Doe',
+            'email' => 'john@example.com',
             'password' => bcrypt('password')
         ]);
 
-        $user->createToken($firstName . $lastName)->plainTextToken;
+        $user->createToken($fullName)->plainTextToken;
 
         User::factory()->count(5)->create();
     }

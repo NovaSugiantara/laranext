@@ -9,13 +9,11 @@ use App\Http\Resources\v1\UserResource;
 class UserController extends Controller
 {
     /**
-     *  handle the incoming request
+     * Handle the incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Http\Response
-     *
-     * */
-
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function __invoke(Request $request)
     {
         return UserResource::make(

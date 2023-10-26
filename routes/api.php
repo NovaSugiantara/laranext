@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\v1\UserController;
 use App\Http\Controllers\API\v1\AuthorController;
 use App\Http\Controllers\API\v1\ArticleController;
 
@@ -24,11 +25,14 @@ use App\Http\Controllers\API\v1\ArticleController;
 
 Route::group([
     'prefix' => 'v1',
-    // 'middleware' => 'auth:sanctum'
+    'middleware' => 'auth:sanctum'
     ], function () {
         // Articles
         Route::apiResource('/articles', ArticleController::class);
 
         // Author
         Route::get('/authors/{user}', [AuthorController::class,'show'])->name('authors');
+
+        // User
+        Route::get('/user', UserController::class);
     });
