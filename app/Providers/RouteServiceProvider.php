@@ -47,6 +47,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
+        // Get Articles either by ID or Slug
+        Route::bind('article', function ($value) {
+            return \App\Models\Article::where('id', $value)
+            ->orWhere('slug', $value)->firstOrFail();
+        });
     }
 
     /**
