@@ -42,7 +42,7 @@ class Handler extends ExceptionHandler
                     'message' => 'Resource not found',
                     'type' => 'NotFoundHttpException',
                     'code' => (string)$e->getStatusCode(),
-                ]);
+                ], 404);
             }
         });
     }
