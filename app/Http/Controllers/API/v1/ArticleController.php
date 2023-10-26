@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\v1;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\v1\ArticleResource;
 use App\Http\Resources\v1\ArticleCollection;
 
 class ArticleController extends Controller
@@ -38,7 +39,9 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return (new ArticleResource($article))
+        ->response()
+        ->setStatusCode(200);
     }
 
     /**

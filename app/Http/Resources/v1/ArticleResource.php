@@ -37,7 +37,9 @@ class ArticleResource extends JsonResource
     public function with($request)
     {
         return [
-            'status' => 'success'
+            'success' => true,
+            'status' => 'success',
+            'code' => 200
         ];
     }
 

@@ -25,7 +25,9 @@ class ArticleCollection extends ResourceCollection
     public function with($request)
     {
         return [
-            'status' => 'success'
+            'success' => true,
+            'status' => 'success',
+            'code' => 200
         ];
     }
 
