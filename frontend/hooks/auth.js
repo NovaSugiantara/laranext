@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "../lib/axios";
+import useSWR from "swr";
 
 export const useAuth = ({ middleware } = {}) => {
-    const router = useRouter;
+    const router = useRouter();
 
     // Loading
     const [isLoading, setIsLoading] = useState(true);
@@ -33,11 +34,18 @@ export const useAuth = ({ middleware } = {}) => {
 
         axios
             .post("/login", props)
-            .then(() => mutate() && router.push("/dashboard"))
+            .then(() => {
+                mutate();
+                router.push("/dashboard");
+            })
             .catch((error) => {
-                if (error.response.status !== 422) throw error;
+                if (error.response && error.response.status !== 422) {
+                    throw error;
+                }
 
-                setErrors(Object.values(error.response.data.errors).flat());
+                if (error.response) {
+                    setErrors(Object.values(error.response.data.errors).flat());
+                }
             });
     };
 
